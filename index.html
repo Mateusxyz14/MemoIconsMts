@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memo-Icons Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de inicio -->
+    <div id="menu-screen" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">MEMO-ICONS</h1>
+            <p class="subtitle">Challenge</p>
+            
+            <div class="user-input">
+                <input type="text" id="player-name" placeholder="Ingresa tu nombre" maxlength="15">
+            </div>
+            
+            <div class="menu-buttons">
+                <button id="start-game" class="neon-button">INICIAR JUEGO</button>
+                <button id="instructions" class="neon-button secondary">INSTRUCCIONES</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de instrucciones -->
+    <div id="instructions-screen" class="screen">
+        <div class="instructions-container">
+            <h2>INSTRUCCIONES</h2>
+            <div class="instructions-content">
+                <p>🎯 <strong>Objetivo:</strong> Encuentra todos los pares de cartas iguales</p>
+                <p>🎮 <strong>Cómo jugar:</strong></p>
+                <ul>
+                    <li>Haz clic en una carta para voltearla</li>
+                    <li>Haz clic en una segunda carta</li>
+                    <li>Si coinciden, permanecen visibles</li>
+                    <li>Si no coinciden, se voltean después de 1 segundo</li>
+                    <li>Encuentra todos los pares en el menor número de intentos</li>
+                </ul>
+                <p>🏆 <strong>Victoria:</strong> Encuentra los 4 pares para ganar</p>
+            </div>
+            <button id="back-menu" class="neon-button">VOLVER AL MENÚ</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de juego -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <h2 id="player-display">Jugador</h2>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-label">Intentos:</span>
+                    <span id="attempts" class="stat-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Pares:</span>
+                    <span id="pairs-found" class="stat-value">0/4</span>
+                </div>
+            </div>
+            <button id="pause-game" class="neon-button small">PAUSA</button>
+        </div>
+
+        <div class="game-board">
+            <div class="card" data-index="0">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="1">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="2">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="3">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="4">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="5">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="6">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-index="7">
+                <div class="card-inner">
+                    <div class="card-back">
+                        <div class="card-back-content">?</div>
+                    </div>
+                    <div class="card-front">
+                        <img class="card-image" src="" alt="Card">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="restart-game" class="neon-button secondary">REINICIAR</button>
+    </div>
+
+    <!-- Modal de pausa -->
+    <div id="pause-modal" class="modal">
+        <div class="modal-content">
+            <h3>JUEGO PAUSADO</h3>
+            <div class="modal-buttons">
+                <button id="resume-game" class="neon-button">CONTINUAR</button>
+                <button id="quit-game" class="neon-button secondary">SALIR AL MENÚ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de victoria -->
+    <div id="victory-modal" class="modal">
+        <div class="modal-content">
+            <h3>¡GANASTE!</h3>
+            <p id="victory-message">¡Felicidades! Completaste el desafío</p>
+            <div class="victory-stats">
+                <p>Intentos totales: <span id="final-attempts">0</span></p>
+            </div>
+            <div class="modal-buttons">
+                <button id="play-again" class="neon-button">JUGAR DE NUEVO</button>
+                <button id="menu-victory" class="neon-button secondary">MENÚ PRINCIPAL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
